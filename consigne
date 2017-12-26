@@ -1,0 +1,26 @@
+DOCUMENTER CODE + EXPLICATION DE L'ALGO
+Nbourgeo@phare.normalesup.org
+
+1/ trouver notre jeu de données :
+   >= 10 variables min
+   >= 100 lignes min
+
+qualitatif / quantitatif
+correlhation
+
+2/
+coder les variables			|
+produire des mesures de dissimilaritées	|=> pour créer un graphe
+agréger les variables			|
+
+3/
+identifier le probleme combinatoire a notre graphe
+programmer l'algo qui le résould
+
+optionnelle : faire de l'apprentissage
+
+Deadline aj + 4 semaines
+
+bareme :
+50% agrégation
+50% resolution
