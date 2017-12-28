@@ -1,4 +1,15 @@
 from joueurs import Joueur
+from PlayerParser import parseString
 
-player = Joueur(1615,1827,3442,66,12,61,50,810,264,24879,40,87,5)
-player.print()
+file = open("data.csv","r")
+line = file.readline()
+playerList = []
+while line  != "":
+	player = parseString(line)
+	playerList.append(player)
+	line = file.readline()
+
+a = 0
+while a < 200:
+	playerList[a].print()
+	a = a + 1
