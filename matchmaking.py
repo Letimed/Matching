@@ -9,7 +9,10 @@ while line  != "":
 	playerList.append(player)
 	line = file.readline()
 
+playerList.sort(key=lambda x: x._elo, reverse=False)
+
 a = 0
 while a < 200:
 	playerList[a].printdatas()
-	a = a + 1
+	a = a + 1 
+	
