@@ -16,6 +16,7 @@ class Joueur(object):
         self._ratevictory = ratevictory
         self._pctafk = pctafk
         self._nationalite = nationalite
+        self._skillScore = 0
 
     def printdatas(self):
         print("Player : " + str(self._nbwin)+';'+str(self._nblose)+';'+str(self._nbtotalgame)+';'+str(self._tempsmoyenneparties)+';'+str(self._kill)+';'+str(self._death)+';'+str(self._assist)+';'+str(self._honor)+';'+str(self._report)+';'+str(self._gametime)+';'+str(self._ratevictory)+';'+str(self._pctafk)+';'+str(self._nationalite)+'\n')
