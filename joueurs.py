@@ -1,5 +1,3 @@
-
-
 class Joueur(object):
 
     def __init__(self, nbwin, nblose, nbtotalgame, tempsmoyennesparties, kill, death, assist, honor, report, gametime, ratevictory, pctafk, nationalite):
@@ -20,3 +18,4 @@ class Joueur(object):
     def printdatas(self):
         print("Player : " + str(self._nbwin)+';'+str(self._nblose)+';'+str(self._nbtotalgame)+';'+str(self._tempsmoyenneparties)+';'+str(self._kill)+';'+str(self._death)+';'+str(self._assist)+';'+str(self._honor)+';'+str(self._report)+';'+str(self._gametime)+';'+str(self._ratevictory)+';'+str(self._pctafk)+';'+str(self._nationalite)+'\n')
 
+    
