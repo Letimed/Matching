@@ -11,5 +11,5 @@ while line  != "":
 
 a = 0
 while a < 200:
-	playerList[a].print()
+	print(playerList[a])
 	a = a + 1

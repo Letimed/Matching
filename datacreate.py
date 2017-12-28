@@ -15,8 +15,8 @@ while a < 200:
 	gametime=randint(0,100000)
 	ratevictory=randint(0,100)
 	pctafk=randint(0,100)
-	nationalité=randint(1,10)
+	nationalite=randint(1,10)
 	
-	f.write(str(nbwin)+';'+str(nblose)+';'+str(nbtotalgame)+';'+str(tempsmoyennesparties)+';'+str(kill)+';'+str(death)+';'+str(assist)+';'+str(honor)+';'+str(report)+';'+str(gametime)+';'+str(ratevictory)+';'+str(pctafk)+';'+str(nationalité)+'\n')
+	f.write(str(nbwin)+';'+str(nblose)+';'+str(nbtotalgame)+';'+str(tempsmoyennesparties)+';'+str(kill)+';'+str(death)+';'+str(assist)+';'+str(honor)+';'+str(report)+';'+str(gametime)+';'+str(ratevictory)+';'+str(pctafk)+';'+str(nationalite)+'\n')
 	a = a + 1
 f.close()
