@@ -1,6 +1,7 @@
 class Joueur(object):
 
-    def __init__(self, elo, nbwin, nblose, nbtotalgame, tempsmoyennesparties, kill, death, assist, honor, report, gametime, ratevictory, pctafk, nationalite):
+    def __init__(self, idPlayer, elo, nbwin, nblose, nbtotalgame, tempsmoyennesparties, kill, death, assist, honor, report, gametime, ratevictory, pctafk, nationalite):
+        self._idPlayer = int(idPlayer)
         self._elo = int(elo)
         self._nbwin = int(nbwin)
         self._nblose = int(nblose)
@@ -18,6 +19,6 @@ class Joueur(object):
         self._skillScore = 0
 
     def printdatas(self):
-        print("Player : "+ str(self._elo)+ ';' + str(self._nbwin)+';'+str(self._nblose)+';'+str(self._nbtotalgame)+';'+str(self._tempsmoyenneparties)+';'+str(self._kill)+';'+str(self._death)+';'+str(self._assist)+';'+str(self._honor)+';'+str(self._report)+';'+str(self._gametime)+';'+str(self._ratevictory)+';'+str(self._pctafk)+';'+str(self._nationalite)+'\n')
+        print("Player : "+ str(self._idPlayer)+ ';'+ str(self._elo)+ ';' + str(self._nbwin)+';'+str(self._nblose)+';'+str(self._nbtotalgame)+';'+str(self._tempsmoyenneparties)+';'+str(self._kill)+';'+str(self._death)+';'+str(self._assist)+';'+str(self._honor)+';'+str(self._report)+';'+str(self._gametime)+';'+str(self._ratevictory)+';'+str(self._pctafk)+';'+str(self._nationalite))
 
     

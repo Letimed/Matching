@@ -1,18 +1,15 @@
 from joueurs import Joueur
 from PlayerParser import parseString
+from makeGame import createGame
 
 file = open("data.csv","r")
 line = file.readline()
-playerList = []
-playerOrganised{}
+playerGraph = []
+
 while line  != "":
 	player = parseString(line)
-	playerList.append(player)
+	playerGraph.append(player)
 	line = file.readline()
 
-playerList.sort(key=lambda x: x._elo, reverse=False)
-
-a = 0
-while a < 200:
-	playerList[a].printdatas()
-	a = a + 1 
+playerGraph.sort(key=lambda x: x._elo, reverse=False)
+createGame(playerGraph)
