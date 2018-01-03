@@ -5,11 +5,11 @@ from makeGame import createGame
 file = open("data.csv","r")
 line = file.readline()
 playerGraph = []
+serverTab = ['Europe','Chine','Russie','Turquie']
 
 while line  != "":
 	player = parseString(line)
 	playerGraph.append(player)
 	line = file.readline()
 
-playerGraph.sort(key=lambda x: x._elo, reverse=False)
 createGame(playerGraph)

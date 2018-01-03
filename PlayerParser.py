@@ -2,6 +2,6 @@ from joueurs import Joueur
 
 
 def parseString(myLine):
-	idPlayer,elo,nbwin,nblose,nbtotalgame,tempsmoyennesparties,kill,death,assist,honor,report,gametime,ratevictory,pctafk,nationalite = myLine.split(';')
-	currentPlayer = Joueur(idPlayer,elo,nbwin,nblose,nbtotalgame,tempsmoyennesparties,kill,death,assist,honor,report,gametime,ratevictory,pctafk,nationalite)
+	idPlayer,nbwin,nblose,nbtotalgame,tempsmoyennesparties,kill,death,assist,honor,report,ratevictory,pctafk,nationalite,gold,gameCurrency = myLine.split(';')
+	currentPlayer = Joueur(idPlayer,nbwin,nblose,nbtotalgame,tempsmoyennesparties,kill,death,assist,honor,report,ratevictory,pctafk,nationalite,gold,gameCurrency)
 	return currentPlayer
