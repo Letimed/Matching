@@ -16,28 +16,27 @@ class Joueur(object):
         self._nationalite = int(nationalite)
         self._gold = int(gold)
         self._gameCurrency = int(gameCurrency)
-        self._skillScore = 0
-        self._fairPlayScore = 0
-        self.makeScore()
+        self._winrate = self._nbwin / self._nbtotalgame
+        self._kda = (self._kill + self._assist) / self._death
+        self._AvgHonor = self._honor / self._nbtotalgame
+        self._AvgReport = self._report / self._nbtotalgame
+        self._Dwinrate = -1
+        self._Dkda = -1
+        self._Dhonor = -1
+        self._Dreport = -1
+        self._Dafk = -1
+        self._Dratevictory = -1
 
     def printdatas(self):
-        print("Player : "+ str(self._idPlayer)+ ';'+ str(self._nbwin)+';'+str(self._nblose)+';'+str(self._nbtotalgame)+';'+str(self._tempsmoyenneparties)+';'+str(self._kill)+';'+str(self._death)+';'+str(self._assist)+';'+str(self._honor)+';'+str(self._report)+';'+';'+str(self._ratevictory)+';'+str(self._pctafk)+';'+str(self._nationalite)+';'+str(self._gold)+';'+str(self._gameCurrency)+';'+str(self._skillScore)+';'+str(self._fairPlayScore))
+        print("Player : "+ str(self._idPlayer)+ ';'+ str(self._nbwin)+';'+str(self._nblose)+';'+str(self._nbtotalgame)+';'+str(self._tempsmoyenneparties)+';'+str(self._kill)+';'+str(self._death)+';'+str(self._assist)+';'+str(self._honor)+';'+str(self._report)+';'+';'+str(self._ratevictory)+';'+str(self._pctafk)+';'+str(self._nationalite)+';'+str(self._gold)+';'+str(self._gameCurrency))
 
-    def makeSkillScore(self):
-        kdaCoef = 1
-        ratioWinrateCoef = 1
-        kdaRating = ((self._kill + self._assist) / self._death) / 40
-        ratiowinrateRating = self._nbwin / self._nbtotalgame / 100
-        self._skillScore = ((kdaRating * kdaCoef)  + (ratiowinrateRating * ratioWinrateCoef)) / (kdaCoef + ratioWinrateCoef)
-
-    def makeFairPlayScore(self):
-        ratiohonorCoef = 1
-        ratioreportCoef = 1
-        afkCoef = 1
-        ratiohonor = self._honor / self._nbtotalgame 
-        ratioreport =  1 - (self._report / self._nbtotalgame)
-        ratioAfk = 1 - (self._pctafk / 100)
-        self._fairPlayScore = ((ratiohonor * ratiohonorCoef) + (ratioreport * ratioreportCoef) + (ratioAfk * afkCoef) )/ (ratiohonorCoef + ratioreportCoef + afkCoef) 
+    def setStats(self, minWinrate, maxWinrate, minKda, maxKda, minHonor, maxHonor, minReport, maxReport, minAfk, maxAfk, minRatevictory, maxRatevictory):
+        self._Dwinrate = (self._winrate - minWinrate) / (maxWinrate - minWinrate)
+        self._Dkda = (self._kda - minKda) / (maxKda - minKda)
+        self._Dhonor = (self._AvgHonor - minHonor) / (maxHonor - minHonor)
+        self._Dreport = (self._AvgReport - minReport) / (maxReport - minReport)
+        self._Dafk = (self._pctafk - minAfk) / (maxAfk - minAfk)
+        self._Dratevictory = (self._ratevictory - minRatevictory) / (maxRatevictory - minRatevictory)
 
     def makeScore(self):
         self.makeSkillScore()
