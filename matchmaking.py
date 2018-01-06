@@ -2,7 +2,7 @@ from joueurs import Joueur
 from PlayerParser import parseString
 from makeGame import createGame
 import math
-import copy
+import copy 
 from Graph import Graph
 from Vertex import Vertex
 from Matching import Matching
@@ -41,57 +41,28 @@ for player in playerList:
 
 matching = []
 
-# Compute euclidian distance and create graph
-for idx_player, player in enumerate(playerList):
+team_1 = [player for player in playerList if player._team == 0]
+team_2 = [player for player in playerList if player._team == 1]
 
-    matched = []
+algo = Algo()
+graph = Graph()
 
-    # Iterate over all other player
-    for idx_peer, peer in enumerate(playerList):
+for idx, player in enumerate(playerList):
+    graph.add_vertex(Vertex(idx))
 
-        # If we are comparing with the same player just skip to the next
-        # element
-        if peer == player:
-            continue
+for pt1 in team_1:
+    for pt2 in team_2:
 
-        distance = (player._Dwinrate - peer._Dwinrate) ** 2
-        distance += (player._Dkda - peer._Dkda) ** 2
-        distance += (player._Dhonor - peer._Dhonor) ** 2
-        distance += (player._Dreport - peer._Dreport) ** 2
-        distance += (player._Dafk - peer._Dafk) ** 2
-        distance += (player._Dratevictory - peer._Dratevictory) ** 2
+        distance = (pt1._Dwinrate - pt2._Dwinrate) ** 2
+        distance += (pt1._Dkda - pt2._Dkda) ** 2
+        distance += (pt1._Dhonor - pt2._Dhonor) ** 2
+        distance += (pt1._Dreport - pt2._Dreport) ** 2
+        distance += (pt1._Dafk - pt2._Dafk) ** 2
+        distance += (pt1._Dratevictory - pt2._Dratevictory) ** 2
 
         distance = math.sqrt(distance)
         
-        # If the distance is beneath a certain treshold this is a similarity
-        # So push it into the similarities graph
         if distance < 0.45:
-            matched.append(peer._idPlayer)
+            graph.add_edge(graph.find_vertex(pt1._idPlayer), graph.find_vertex(pt2._idPlayer))
 
-    # Push the edges of that player
-    matching.append(matched)
-
-# print generated graph
-matching_tmp = copy.deepcopy(matching)
-
-algo = Algo()
-
-for idx, entry in enumerate(matching_tmp):
-    print("Matching [" + str(idx) + "] " + str(entry))
-
-g = Graph()
-for idx, player in enumerate(matching):
-    g.add_vertex(Vertex(str(idx)))
-
-for idx_player, player in enumerate(matching):
-    for idx_peer, peer in enumerate(player):
-        g.add_edge(g.find_vertex(str(idx_player)), g.find_vertex(str(peer)))
-m = Matching.from_graph(g)
-m = algo.find_maximum_matching(g, m)
-print(m)
-
-
-# ALGO
-#createGame(playerList)
-
-# END ALGO
+print(graph)

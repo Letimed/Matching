@@ -1,6 +1,7 @@
 class Joueur(object):
 
-    def __init__(self, idPlayer, nbwin, nblose, nbtotalgame, tempsmoyennesparties, kill, death, assist, honor, report, ratevictory, pctafk, nationalite,gold,gameCurrency):
+    def __init__(self, idPlayer, team, nbwin, nblose, nbtotalgame, tempsmoyennesparties, kill, death, assist, honor, report, ratevictory, pctafk, nationalite,gold,gameCurrency):
+        self._team = int(team)
         self._idPlayer = int(idPlayer)
         self._nbwin = int(nbwin)
         self._nblose = int(nblose)

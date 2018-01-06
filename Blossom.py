@@ -1,3 +1,5 @@
+from Vertex import Vertex
+
 class Blossom():
     blossom_index = 0
     def __init__(self, v, w, tree):

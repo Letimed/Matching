@@ -1,4 +1,5 @@
 from Edge import Edge
+from Vertex import Vertex
 
 class Graph:
   def __init__(self):
@@ -14,6 +15,7 @@ class Graph:
       return v.edges[w]
     else:
       return None
+
   def add_edge(self, v, w):
     edge = self.find_edge(v, w)
     if not edge:
@@ -21,6 +23,7 @@ class Graph:
       v.edges[w] = edge
       w.edges[v] = edge
       self.edges.append(edge)
+
   def remove_edge(self, v, w):
     edge = self.find_edge(v, w)
     if edge:
