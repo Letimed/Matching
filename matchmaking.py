@@ -2,7 +2,12 @@ from joueurs import Joueur
 from PlayerParser import parseString
 from makeGame import createGame
 import math
-
+import copy
+from Graph import Graph
+from Vertex import Vertex
+from Matching import Matching
+from Algo import Algo
+from Edge import Edge
 
 # DATA CREATION
 
@@ -67,12 +72,26 @@ for idx_player, player in enumerate(playerList):
     matching.append(matched)
 
 # print generated graph
-for idx, entry in enumerate(matching):
+matching_tmp = copy.deepcopy(matching)
+
+algo = Algo()
+
+for idx, entry in enumerate(matching_tmp):
     print("Matching [" + str(idx) + "] " + str(entry))
+
+g = Graph()
+for idx, player in enumerate(matching):
+    g.add_vertex(Vertex(str(idx)))
+
+for idx_player, player in enumerate(matching):
+    for idx_peer, peer in enumerate(player):
+        g.add_edge(g.find_vertex(str(idx_player)), g.find_vertex(str(peer)))
+m = Matching.from_graph(g)
+m = algo.find_maximum_matching(g, m)
+print(m)
 
 
 # ALGO
-
 #createGame(playerList)
 
 # END ALGO
