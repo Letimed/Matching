@@ -1,6 +1,7 @@
 from joueurs import Joueur
 from PlayerParser import parseString
 from makeGame import createGame
+import math
 
 
 # DATA CREATION
@@ -32,6 +33,43 @@ for player in playerList:
 	player.setStats(minWinrate, maxWinrate, minKda, maxKda, minHonor, maxHonor, minReport, maxReport, minAfk, maxAfk, minRatevictory, maxRatevictory)
 
 #END DATA CREATION
+
+matching = []
+
+# Compute euclidian distance and create graph
+for idx_player, player in enumerate(playerList):
+
+    matched = []
+
+    # Iterate over all other player
+    for idx_peer, peer in enumerate(playerList):
+
+        # If we are comparing with the same player just skip to the next
+        # element
+        if peer == player:
+            continue
+
+        distance = (player._Dwinrate - peer._Dwinrate) ** 2
+        distance += (player._Dkda - peer._Dkda) ** 2
+        distance += (player._Dhonor - peer._Dhonor) ** 2
+        distance += (player._Dreport - peer._Dreport) ** 2
+        distance += (player._Dafk - peer._Dafk) ** 2
+        distance += (player._Dratevictory - peer._Dratevictory) ** 2
+
+        distance = math.sqrt(distance)
+        
+        # If the distance is beneath a certain treshold this is a similarity
+        # So push it into the similarities graph
+        if distance < 0.45:
+            matched.append(peer._idPlayer)
+
+    # Push the edges of that player
+    matching.append(matched)
+
+# print generated graph
+for idx, entry in enumerate(matching):
+    print("Matching [" + str(idx) + "] " + str(entry))
+
 
 # ALGO
 
