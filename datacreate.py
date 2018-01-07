@@ -2,7 +2,7 @@ from random import randint
 
 f = open("data.csv","w")
 idPlayer=0
-while idPlayer < 50:
+while idPlayer < 200:
     team=randint(0,1)
     nbwin=randint(0,2000)
     nblose=randint(0,2000)

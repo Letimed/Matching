@@ -62,7 +62,33 @@ for pt1 in team_1:
 
         distance = math.sqrt(distance)
         
-        if distance < 0.45:
+        if distance < 0.5:
             graph.add_edge(graph.find_vertex(pt1._idPlayer), graph.find_vertex(pt2._idPlayer))
 
-print(graph)
+tmp = graph.clone()
+matching = Graph()
+
+for pt1 in team_1:
+    vertex = tmp.find_vertex(pt1._idPlayer)
+
+    if vertex.degree() > 0:
+        edge = next (iter (vertex.edges.values()))
+        matching.add_vertex(Vertex(edge.w.value))
+        matching.add_vertex(Vertex(edge.v.value))
+        matching.add_edge(matching.find_vertex(edge.v.value), matching.find_vertex(edge.w.value))
+        tmp.remove_vertex(edge.v)
+        tmp.remove_vertex(edge.w)
+
+
+unmatched  = 0
+
+for pt1 in team_1:
+    vertex = matching.find_vertex(pt1._idPlayer)
+
+    if vertex is None:
+        unmatched += 1
+    else:
+        if vertex.degree() > 1:
+            print ("ERROR MATCHING > 1 for " + str(vertex))
+
+print ("Matched : " + str((len(team_1) - unmatched) * 2) + " / " + str(len(playerList)))
