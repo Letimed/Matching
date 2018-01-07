@@ -1,4 +1,3 @@
-from Blossom import Blossom
 from Edge import Edge
 from Graph import Graph
 
