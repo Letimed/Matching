@@ -1,10 +1,6 @@
 from Blossom import Blossom
 from Edge import Edge
 from Graph import Graph
-from Marked import Marked
-from Matching import Matching
-from Path import Path
-from Tree import Tree
 
 class Algo:
     def find_maximum_matching(self, graph, matching):
