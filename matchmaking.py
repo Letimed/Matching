@@ -64,30 +64,38 @@ for pt1 in team_1:
         if distance < 0.5:
             graph.add_edge(graph.find_vertex(pt1._idPlayer), graph.find_vertex(pt2._idPlayer))
 
-tmp = graph.clone()
-matching = Graph()
+def bfs(graph, unmatched_1, unmatched_2):
+    found = []
 
-for pt1 in team_1:
-    vertex = tmp.find_vertex(pt1._idPlayer)
+    for player in unmatched_1:
+        vertex = graph.find_vertex(player._idPlayer)
+        if vertex.degree() > 0:
+            for edge in iter(vertex.edges.values()):
+                peer = edge.w if edge.w != vertex.value else edge.v
+                for player_2 in unmatched_2:
+                    if player_2._idPlayer == peer.value:
+                        if player_2._idPlayer not in found:
+                            found.append(player_2._idPlayer)
 
-    if vertex.degree() > 0:
-        edge = next (iter (vertex.edges.values()))
-        matching.add_vertex(Vertex(edge.w.value))
-        matching.add_vertex(Vertex(edge.v.value))
-        matching.add_edge(matching.find_vertex(edge.v.value), matching.find_vertex(edge.w.value))
-        tmp.remove_vertex(edge.v)
-        tmp.remove_vertex(edge.w)
+    return found
 
+def dfs(graph):
+    return None
+    
+def hopcroft_karp(graph, team_1, team_2):
+    m = Graph()
 
-unmatched  = 0
+    p = bfs(graph.clone(), team_1, team_2) 
 
-for pt1 in team_1:
-    vertex = matching.find_vertex(pt1._idPlayer)
+    print(len(team_2))
+    print(len(p))
 
-    if vertex is None:
-        unmatched += 1
-    else:
-        if vertex.degree() > 1:
-            print ("ERROR MATCHING > 1 for " + str(vertex))
+    print (p)
 
-print ("Matched : " + str((len(team_1) - unmatched) * 2) + " / " + str(len(playerList)))
+    ## bfs(graph.clone(), unmatched_1, unmatched_2)
+
+    print ("Unmatched_1 : " + str(len(unmatched_1)))
+    print ("Unmatched_2 : " + str(len(unmatched_2)))
+    print ("Matched : " + str(len(p.vertices)))
+
+hopcroft_karp(graph, team_1, team_2)
