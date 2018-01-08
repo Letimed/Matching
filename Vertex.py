@@ -5,6 +5,14 @@ class Vertex:
   
     def degree(self):
         return len(self.edges)
+
+    def getNeighbors(self):
+        neighbors = []
+        for edge in iter(self.edges.values()):
+            neighbor = edge.w if edge.w.value != self.value else edge.v
+            neighbors.append(neighbor)
+        return neighbors 
+
   
     def __str__(self):
         return str(self.value)

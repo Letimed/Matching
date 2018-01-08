@@ -1,12 +1,14 @@
 from joueurs import Joueur
 from PlayerParser import parseString
 from makeGame import createGame
+from hop import HopcroftKarp
 import math
 import copy 
 from Graph import Graph
 from Vertex import Vertex
 from Algo import Algo
 from Edge import Edge
+import collections
 
 # DATA CREATION
 
@@ -64,38 +66,59 @@ for pt1 in team_1:
         if distance < 0.5:
             graph.add_edge(graph.find_vertex(pt1._idPlayer), graph.find_vertex(pt2._idPlayer))
 
+hp = HopcroftKarp(graph, team_1, team_2)
+print("Matched : " + str(hp.match()))
+exit()
+
+
+def graph_bfs(graph, unmatched_1, unmatched_2):
+    return None
+
+
 def bfs(graph, unmatched_1, unmatched_2):
     found = []
+    current_layer = [player._idPlayer for player in unmatched_1]
+    next_layer = []
 
-    for player in unmatched_1:
-        vertex = graph.find_vertex(player._idPlayer)
-        if vertex.degree() > 0:
-            for edge in iter(vertex.edges.values()):
-                peer = edge.w if edge.w != vertex.value else edge.v
-                for player_2 in unmatched_2:
-                    if player_2._idPlayer == peer.value:
-                        if player_2._idPlayer not in found:
-                            found.append(player_2._idPlayer)
+    while len(found) <= 0:
+        for id in current_layer:
+            vertex = graph.find_vertex(id)
+            if vertex.degree() > 0:
+                for edge in iter(vertex.edges.values()):
+                    peer = edge.w if edge.w != vertex.value else edge.v
+                    next_layer.append(peer.value)
+                    for player_2 in unmatched_2:
+                        if player_2._idPlayer == peer.value:
+                            if player_2._idPlayer not in found:
+                                found.append(player_2._idPlayer)
+        current_layer = next_layer
+        next_layer = []
 
     return found
 
-def dfs(graph):
-    return None
+def dfs(graph, unmatched_1, vertex):
+
+    for edge in iter(vertex.edges.values()):
+        path = Graph()
+        peer = edge.w if edge.w != vertex.value else edge.v
+
+        for player_1 in unmatched_1:
+            if player_1._idPlayer == peer.value:
+                print("found it !")
+        
     
 def hopcroft_karp(graph, team_1, team_2):
-    m = Graph()
 
-    p = bfs(graph.clone(), team_1, team_2) 
+    g = Graph()
+    unmatched_1 = team_1
 
-    print(len(team_2))
-    print(len(p))
+    ## Get the nodes from V (team_2) reachable by bfs
+    F = bfs(graph.clone(), team_1, team_2) 
 
-    print (p)
+    print(F)
 
-    ## bfs(graph.clone(), unmatched_1, unmatched_2)
+    ## Try to reach an unmatched vertex from U (team_1) from F[x] to 
+    for vertex in F:
+        g = dfs(graph, unmatched_1, graph.find_vertex(vertex))
 
-    print ("Unmatched_1 : " + str(len(unmatched_1)))
-    print ("Unmatched_2 : " + str(len(unmatched_2)))
-    print ("Matched : " + str(len(p.vertices)))
 
-hopcroft_karp(graph, team_1, team_2)
