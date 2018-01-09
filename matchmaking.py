@@ -40,7 +40,19 @@ for player in playerList:
 
 #END DATA CREATION
 
+def ponderate(playerList):
+    for player in playerList:
+        player._Dwinrate *= 1.5
+        player._Dkda *= 0.8
+        player._Dhonor *= 1.2
+        player._Dreport *= 1.2
+        player._Dafk *= 1.3
+        player._Dratevictory *= 2
+
+
 matching = []
+
+ponderate(playerList)
 
 team_1 = [player for player in playerList if player._team == 0]
 team_2 = [player for player in playerList if player._team == 1]
@@ -50,6 +62,7 @@ graph = Graph()
 
 for idx, player in enumerate(playerList):
     graph.add_vertex(Vertex(idx))
+
 
 for pt1 in team_1:
     for pt2 in team_2:
@@ -62,8 +75,8 @@ for pt1 in team_1:
         distance += (pt1._Dratevictory - pt2._Dratevictory) ** 2
 
         distance = math.sqrt(distance)
-        
-        if distance < 0.5:
+
+        if distance < 1.5:
             graph.add_edge(graph.find_vertex(pt1._idPlayer), graph.find_vertex(pt2._idPlayer))
 
 hp = HopcroftKarp(graph, team_1, team_2)
