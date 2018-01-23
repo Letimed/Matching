@@ -1,0 +1,33 @@
+Documentation Technique
+
+
+Mise en situation:
+Nous avons mis en place un algo de Matchmaking pour un jeu quelconque. 
+Les parties sont composées de deux joueurs pour des parties de 1 contre 1.
+Chaque joueurs choisis un camp parmis les deux camps 2 disponibles et affronte  un joueur de l’autre camp. 
+Nos Datas représentent les joueurs actuellement en recherche de match a un instant T.
+Le but est donc de matcher ces joueurs afin que le niveau de la partie soit le plus équilibré possible.
+
+NOTE IMPORTANTE :  “L’Elo” classiquement utilisé pour représenter le niveau d’un joueur dans les jeux (jeux en ligne, echec etc…) n’est pas présent dans nos Datas car celui-ci découle généralement des autres Datas que nous utilisons et ne peut être généré automatiquement a partir de celle-ci sans un suivis continue du joueur. De plus générer une valeur aléatoire de l’elo nous forcerait à ne prendre qu’une seule variable en compte lors de l’algorithme de matching ce qui nuirait grandement à l’exercice.  
+
+Descriptions des datas :
+Team : Camp auquel le joueur appartient
+Nbwin : Nombre de partie gagnée par le joueur
+Nblose : Nombre de partie perdue par le joueur
+Nbtotalgame : Nombre totale de partie du joueur
+Tempsmoyennesparties : Temps moyen par partie 
+Kill : Nombre de kill moyen par partie 
+Death :Nombre de morts moyen par partie 
+Assist : Nombre d’assistances moyen par partie 
+Honor : Nombre de récompenses reçu 
+Report : Nombre de fois où le joueur a été signalé pour un comportement négatif
+Ratevictory : Ratio victoire défaite
+Pctafk : Pourcentage d’abandon de partie
+Nationalite : Pays de résidence du joueur
+Gold : Nombre moyen de gold généré par partie 
+GameCurrency : Monnaie du jeu possédé par le joueur 
+
+Toutes ces datas nous permettent de matcher les joueurs entre eux à l’aide de notre algorithme.
+
+Description de l’Algo :
+Dans un premier temps nous normalisons nos datas entre 0 et 1 dans le but d’avoir un espace cohérent. Suite a ça nous créons un graphe biparti en prenant en compte la variable “Team”. 
