@@ -30,4 +30,26 @@ GameCurrency : Monnaie du jeu possédé par le joueur
 Toutes ces datas nous permettent de matcher les joueurs entre eux à l’aide de notre algorithme.
 
 Description de l’Algo :
-Dans un premier temps nous normalisons nos datas entre 0 et 1 dans le but d’avoir un espace cohérent. Suite a ça nous créons un graphe biparti en prenant en compte la variable “Team”. 
+
+La premiere etape consiste a formater les donnees.
+  - Normalisation de l'ensemble des variables utiles
+  - Ponderation des variables utiles ( /!\ EXPLIQUER LA PONDERATION /!\ )
+
+Dans un second temps un graph est genere :
+  - Calcul de la distance euclidienne separant un joueur de tout les autres
+    Si cette distance est inferieur a 1.5 alors la similarite est representee par une
+    arette reliant les deux joeurs representes par des sommets dans le graph
+
+Enfin l'algorithme est lance sur le graph :
+  - Les joeurs etant separes entre 2 equipes ce graph est bipartie
+
+L'algorithme Hopcroft-Karp tente de trouver un maching maximal sur le graph bipartie :
+  une recherche en largeur est effectue en partant des sommets non match de la premiere partition pour atteindre un ou des sommets non match
+  de la seconde partition
+  ensuite une recherche en profondeur est effectuee en suivant ce ou ces chemins ameliorants pour creer des chemins alternes ( alternant les arettes match / non match ) ce qui permet de trouver le ou les chemins augmentant les plus courts
+
+  ces iterations sont repetee jusqu'a ce aue la recherge en largeur ne soit pas en mesure de trouver un chemin ameliorant
+
+Hopcroft - Karp
+  
+    
