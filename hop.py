@@ -1,5 +1,3 @@
-#Algorithms for bipartite graphs
-
 from joueurs import Joueur
 from Graph import Graph
 from Vertex import Vertex
@@ -8,6 +6,10 @@ import collections
 
 class HopcroftKarp(object):
 
+    """
+        Implementation of the Hopcroft-Karp algorithm to find maximum cardinality matching
+        in bipartite graphs
+    """
     def __init__(self, G, team_1, team_2):
         """ 
             G: the graph received as implemented in Graph.py and Edge.py
