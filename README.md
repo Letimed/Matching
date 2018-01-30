@@ -3,6 +3,11 @@
 This repository contains the code related to the EPITECH matching project.
 The goal is to find a maximum matching in a dataset of our choice.
 
+To run the project :
+```bash
+  python matchmaking.py
+```
+
 # Dataset
 
 The dataset represent a set a players separated into 2 distinct teams, the resulting graph is therefore a **bipartite graph.**
