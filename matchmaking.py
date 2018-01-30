@@ -84,13 +84,13 @@ for pt1 in team_1:
 
         distance = math.sqrt(distance)
 
-        if distance < 1.5:
+        if distance < 0.8:
             graph.add_edge(graph.find_vertex(pt1._idPlayer), graph.find_vertex(pt2._idPlayer))
 
 """
     Perform bipartite matching on the resulting graph
 """
 hp = HopcroftKarp(graph, team_1, team_2)
-print("Matched : " + str(hp.match()))
+print(str(hp.match()) + " matching !")
 
 
