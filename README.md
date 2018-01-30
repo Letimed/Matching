@@ -8,13 +8,19 @@ To run the project :
   python matchmaking.py
 ```
 
+Members :
+- Quentin Vieira
+- Florian Camus
+- Loic Echevet
+- Hector Roussille
+
 # Dataset
 
 The dataset represent a set a players separated into 2 distinct teams, the resulting graph is therefore a **bipartite graph.**
 
 To generate a new dataset :
 ```bash
-	python datacreate.py
+  python datacreate.py
 ```
 This command outputs a **data.csv** file.
 
